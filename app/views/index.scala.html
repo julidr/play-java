@@ -1,0 +1,33 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(message: String, profile: String, isLog: Boolean)
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+@main("Agenda de Contraseñas HAL 9000",isLog, profile) {
+
+    @*
+     * Get an `Html` object by calling the built-in Play welcome
+     * template and passing a `String` message.
+     *@
+<br> <br> 
+	<div class="row column text-center">
+		<h1>Manten tus contraseñas a salvo con nuestra agenda perfecta</h1>
+		<p class="lead">Su unico objetivo es el de mantener tus contraseñas a salvo, sin importar la situación HAL jamas te traicionara. Ni siquiera con el fin de completar una misión de Jupiter.</p>
+	</div>
+<hr>
+	<div class="row">
+		<div class="medium-6 columns medium-push-6">
+			<img class="thumbnail" src="@routes.Assets.versioned("images/hal.png")" width="750" height="350">
+		</div>
+		<div class="medium-6 columns medium-pull-6">
+			<h2>Solo Inicia Sesión.</h2>
+				<p>Limitate a iniciar sesión en nuestro sitio y a administrar todas las contraseñas que dispongas para tus diferentes cuentas. HAL se encargara de mantenerlas segura y velar para que en el momento en que regreses estas se encuentren ahí, sin ningun cambio y sin que nadie más pueda verlas.</p>
+		</div>
+	</div>
+}

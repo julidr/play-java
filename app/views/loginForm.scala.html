@@ -1,0 +1,29 @@
+@(isLog: Boolean, tryAgain: Boolean)
+<br><br><br><br><br><br>
+<div class="row">
+  <div class="medium-6 medium-centered large-4 large-centered columns">
+  @if(isLog==false){
+        <form method="post" action="@routes.Application.postLogin()">
+      <div class="row column log-in-form" style="border: 1px solid #cacaca; padding: 1rem; border-radius: 3px;">
+        <h4 class="text-center">Inicia Sesión con tu Email</h4>
+        <label>Email
+          <input type="text" placeholder="Correo" name="email">
+        </label>
+        <label>Password
+          <input type="password" placeholder="Password" name="password">
+        </label>
+        <button type="submit" class="button expanded" value="Login">Log In</button>
+      </div>
+    </form>
+  }else{
+      <div data-alert class="alert-box" tabindex="0" aria-live="assertive" role="alertdialog">
+        Ya Inicio Sesión
+        <button tabindex="0" class="close" aria-label="Close Alert">&times;</button>
+      </div>
+  }
+    @if(tryAgain==true){
+    <div data-alert class="alert-box alert round">
+      Usuario o Contraseña Erroneo
+      <a href="#" class="close">&times;</a>
+    </div>
+  }
