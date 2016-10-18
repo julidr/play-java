@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Map;
+import java.util.ArrayList;
 
 public class AdministradorDePasswords {
 	
@@ -38,6 +39,14 @@ public class AdministradorDePasswords {
 		adminInfo.cargarInformacion(ruta);
 		hashDePasswords= adminInfo.getHashDePasswords();
 		
+	}
+	
+	public Map<String, Password> getHashDePasswords(){
+		return hashDePasswords;
+	}
+	
+	public ArrayList<Password> getListaDePasswords(){
+		return adminInfo.getListaDePasswords();
 	}
 
 }

@@ -5,6 +5,8 @@ import play.data.Form;
 import model.Usuario;
 import model.Password;
 import model.Controlador;
+import java.util.Map;
+import java.util.List;
 import views.html.*;
 import static play.libs.Json.toJson;
 
@@ -41,10 +43,11 @@ public class Application extends Controller{
     }
     
     public Result getBusqueda(){
-        Password formPass= Form.form(Password.class).bindFromRequest().get();
-        System.out.println("plataforma a buscar: " + formPass.getPlataforma());
-        System.out.println(ctrl.buscarPassword(formPass.getPlataforma()).toString());
-        return ok(toJson(ctrl.buscarPassword(formPass.getPlataforma())));
+        //Password formPass= Form.form(Password.class).bindFromRequest().get();
+        //System.out.println("plataforma a buscar: " + formPass.getPlataforma());
+        //System.out.println(ctrl.buscarPassword(formPass.getPlataforma()).toString());
+        List<Password> passwords= ctrl.getListaDePasswords();
+        return ok(toJson(passwords));
     }
     
     public Result postLogin(){

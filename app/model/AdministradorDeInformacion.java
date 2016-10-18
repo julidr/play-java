@@ -60,5 +60,15 @@ public class AdministradorDeInformacion {
 		System.out.println(hashDePasswords.keySet());
 		return hashDePasswords;
 	}
+	
+		public ArrayList<Password> getListaDePasswords(){
+		ArrayList<Password> listaPassword= new ArrayList<Password>();
+		ArrayList<Object> listaDeObjetos= convertirHashTableALista(hashDePasswords);
+		for(int i=0; i<listaDeObjetos.size(); i++){
+			Password pass= (Password) listaDeObjetos.get(i);
+			listaPassword.add(pass);
+		}
+		return listaPassword;
+	}
 
 }
