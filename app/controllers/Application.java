@@ -30,7 +30,7 @@ public class Application extends Controller{
                 
         System.out.println("cargando info");
         ctrl.cargarInformacion("descriptor.txt");
-        return ok(passwordsMain.render(nombreUsuario, isLog));
+        return ok(passwordsMain.render(nombreUsuario, isLog, false));
     }
     
     public Result postPassword(){
@@ -38,8 +38,11 @@ public class Application extends Controller{
         String plataforma= formPass.getPlataforma();
         String cuenta= formPass.getCuenta();
         String password= formPass.getPassword();
+        if(ctrl.verificarDisponibilidad(plataforma)==false){
+            return ok(passwordsMain.render(nombreUsuario, isLog, true));
+        }
         ctrl.agregarNuevoPassword(plataforma, cuenta, password);
-        return ok(passwordsMain.render(nombreUsuario, isLog));
+        return ok(passwordsMain.render(nombreUsuario, isLog, false));
     }
     
     public Result getBusqueda(){

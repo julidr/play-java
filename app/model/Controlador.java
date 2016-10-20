@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Map;
 import java.util.ArrayList;
 
 public class Controlador {
@@ -19,16 +18,13 @@ public class Controlador {
 		adminPass.crearPassword(plataforma, cuenta, password);
 	}
 	
-	public Password buscarPassword(String plataforma){
-		return adminPass.buscarPassword(plataforma);
-	}
-	
-	public Map<String, Password> getHashDePasswords(){
-		return adminPass.getHashDePasswords();
-	}
 	
 	public ArrayList<Password> getListaDePasswords(){
 		return adminPass.getListaDePasswords();
+	}
+	
+	public boolean verificarDisponibilidad(String plataforma){
+		return adminPass.verificarDisponibilidad(plataforma);
 	}
 
 }

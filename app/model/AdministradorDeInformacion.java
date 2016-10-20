@@ -2,18 +2,13 @@ package model;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import anchoFijo.Controlador;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.Iterator;
 
 
 public class AdministradorDeInformacion {
 	
 	private Controlador ctrl= new Controlador();
-	private Map<String, Password> hashDePasswords= new TreeMap<String, Password>(String.CASE_INSENSITIVE_ORDER);
-	//private Hashtable <String, Password> hashDePasswords= new Hashtable<String, Password>();
+	private ArrayList<Password> listaDePasswords= new ArrayList<Password>();
 	
 	public void cargarInformacion(String ruta){
 		try {
@@ -24,51 +19,40 @@ public class AdministradorDeInformacion {
 			System.out.println(infoArchivos.get(1));
 			ctrl.construirClase(infoArchivos.get(0),infoArchivos.get(1));
 			System.out.println("lalala");
-			convertirListaAHashTable();
+			listaDePasswords= getListaDeObjetos();
 		} catch (IOException e) {
 			System.out.println(e);
 		}
 	}
 	
-	public void convertirListaAHashTable(){
+	public ArrayList<Password> getListaDeObjetos(){
 		ArrayList<Object> lista=ctrl.getListaDeObjetos();
+		ArrayList<Password> listaPasswords= new ArrayList<Password>();
+		
 		for(int i=0; i<lista.size(); i++){
 			Password pass= (Password)lista.get(i);
-			hashDePasswords.put(pass.getPlataforma(), pass);
+			listaPasswords.add(pass);
 		}
-		System.out.println(hashDePasswords.keySet());
+		return listaPasswords;
 	}
 	
-	public void imprimir(Map<String, Password> hashDePasswords){
-		ctrl.setListaDeObjetos(convertirHashTableALista(hashDePasswords));
+	
+	public void imprimir(ArrayList<Password> listaDePasswords){
+		ctrl.setListaDeObjetos(convertirAListaDeObjetos(listaDePasswords));
 		ctrl.getListaDeObjetos().size();
 		ctrl.imprimir("datos//Passwords.txt");
 	}
 	
-	public ArrayList<Object> convertirHashTableALista(Map<String, Password> hashDePasswords){
+	public ArrayList<Object> convertirAListaDeObjetos(ArrayList<Password> listaDePasswords){
 		ArrayList<Object> lista= new ArrayList<Object>();
-		Iterator<String> it= hashDePasswords.keySet().iterator();
-		while(it.hasNext()){
-			String key= it.next();
-			lista.add(hashDePasswords.get(key));
+		for(int i=0; i<listaDePasswords.size(); i++){
+			lista.add(listaDePasswords.get(i));
 		}
 		return lista;
 	}
 	
-	public Map<String, Password> getHashDePasswords(){
-		System.out.println("Devolviendo");
-		System.out.println(hashDePasswords.keySet());
-		return hashDePasswords;
-	}
-	
-		public ArrayList<Password> getListaDePasswords(){
-		ArrayList<Password> listaPassword= new ArrayList<Password>();
-		ArrayList<Object> listaDeObjetos= convertirHashTableALista(hashDePasswords);
-		for(int i=0; i<listaDeObjetos.size(); i++){
-			Password pass= (Password) listaDeObjetos.get(i);
-			listaPassword.add(pass);
-		}
-		return listaPassword;
+	public ArrayList<Password> getListaDePasswords(){
+		return listaDePasswords;
 	}
 
 }
